@@ -441,10 +441,7 @@ async def enter_meinfo(message: types.Message):
             ws = wb['Регистрация']
             N = 0
             ww = wb['Количество']
-            for i in range(2,10000):
-                if ws['G'+str(i)].value == 1:
-                    N += 1
-            ww['B2'].value = N
+            
             ft = PatternFill(fill_type='solid', fgColor='008000')
             font = Font(color="ffffff")
             for i in range(2,100000):
@@ -465,6 +462,10 @@ async def enter_meinfo(message: types.Message):
                     ws['F' + str(i)].font = font
                     ws['G' + str(i)].font = font
                     break
+            for i in range(2,10000):
+                if ws['G'+str(i)].value == 1:
+                    N += 1
+            ww['B2'].value = N
             wb.save(f)
             wb.close()
             await bot.send_message(chatId, text, reply_markup=keyboard, parse_mode=ParseMode.MARKDOWN)
