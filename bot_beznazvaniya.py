@@ -44,7 +44,7 @@ start_button.add(info, stats)
 start_button.add(call)
 
 V_button = types.ReplyKeyboardMarkup(resize_keyboard=True)
-V1 = types.KeyboardButton("1299 руб. с репостом афиши из группы в VK к себе на страницу")
+V1 = types.KeyboardButton("1299 руб. с репостом афиши из группы VK к себе на страницу")
 V2 = types.KeyboardButton("1499 руб. без репоста")
 cancle = types.KeyboardButton('Отмена')
 V_button.add(V1)
@@ -60,7 +60,7 @@ cancle_button.add(cancle)
 
 @dp.message_handler(commands='start')
 async def start(message: types.Message):
-    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('ACT A FOOL DAY') + ' 🤹🏽‍♂️\n' + '23:00-5:00\n31 МАРТА-1 АПРЕЛЯ\nЛОФТ ФАРФОР\n\n'+ bold('FREE BAR') + ' | ' + bold('E') + '-' + bold('SIGS') + ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nЗдесь вы можете:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
+    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('ACT A FOOL DAY') + ' 🤹🏽‍♂️\n' + '31 МАРТА - 1 АПРЕЛЯ\n23:00 - 5:00\nЛОФТ ФАРФОР\n\n'+ bold('FREE BAR') + ' | ' + bold('PRANKS') + ' | ' + bold("INVATED DJS")+ ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nМеню:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
 
 
 @dp.message_handler(Text(equals="Отмена"), state="*")
@@ -68,7 +68,7 @@ async def menu_button(message: types.Message, state: FSMContext):
     await state.finish()
     await bot.send_message(
         message.chat.id, "Отмена произошла успешно.")
-    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('ACT A FOOL DAY') + ' 🤹🏽‍♂️\n' + '23:00-5:00\n31 МАРТА-1 АПРЕЛЯ\nЛОФТ ФАРФОР\n\n'+ bold('FREE BAR') + ' | ' + bold('E') + '-' + bold('SIGS') + ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nЗдесь вы можете:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
+    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('ACT A FOOL DAY') + ' 🤹🏽‍♂️\n' + '31 МАРТА - 1 АПРЕЛЯ\n23:00 - 5:00\nЛОФТ ФАРФОР\n\n'+ bold('FREE BAR') + ' | ' + bold('PRANKS') + ' | ' + bold("INVATED DJS") +' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nМеню:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
     await state.finish()
 
 
@@ -91,7 +91,7 @@ class PGroup(StatesGroup):
 async def enter_meinfo(message: types.Message):
     await message.answer(f'Выберите вариант оплаты', parse_mode=ParseMode.MARKDOWN, reply_markup=V_button)# \n/question - связаться с нами
 
-    # J = open("check.txt","r", encoding="utf-8") 
+    # J = open("/Users/senyashago/Desktop/Бот практика/bez/check.txt","r", encoding="utf-8") 
     # joinedUsers = set()
     # for line in J:
     #     joinedUsers.add(line.strip())
@@ -108,7 +108,7 @@ async def enter_meinfo(message: types.Message):
 async def enter_meinfo(message: types.Message):
     keyboard = InlineKeyboardMarkup()
     url_button1 = InlineKeyboardButton(text="Менеджер VK", url="https://vk.com/beznazvaniya_manager")
-    url_button5 = InlineKeyboardButton(text="Наш инстаграм", url="https://instagram.com/beznazvaniya_msk?igshid=YmMyMTA2M2Y=")
+    url_button5 = InlineKeyboardButton(text="Наш инстаграм (тут будет розыгрыш мерча)", url="https://instagram.com/beznazvaniya_msk?igshid=YmMyMTA2M2Y=")
     url_button6 = InlineKeyboardButton(text="Группа VK", url="https://vk.com/beznazvaniya_msk")
     url_button7 = InlineKeyboardButton(text="Telegram-канал", url="https://t.me/joinchat/AAAAAEuYaZ8EnD84P-MUXQ")
     keyboard.add(url_button1)
@@ -123,7 +123,7 @@ async def enter_meinfo(message: types.Message):
 @dp.message_handler(state=PGroup.W1)
 async def answer_q1(message: types.Message, state: FSMContext):
     answer = message.text
-    f = 'users3.xlsx'
+    f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
     wb = load_workbook(f)
     ws = wb['Регистрация']
     ww = wb['Количество']  
@@ -144,7 +144,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
     if k == 0 and check == 1:
         await state.update_data(answer11=answer)        
         # text = "Оплатите билет:\n\nСтоимость: " + bold("1299 рублей") + "\n\n2202200112477334\nДмитрий Альбертович И.\n\n" + bold('ВАЖНО: ') + 'В комментарии к платежу укажите фамилию\n\n' + "После оплаты отправьте сюда скрин оплаты (не документ, а именно фото)"
-        text = "Оплатите билет:\n\nСтоимость: " + bold("1299 рублей") + "\n\n5469330013230903\nЕлизавета Александровна\n\n" + bold('ВАЖНО: ') + 'В комментарии к платежу укажи фамилию\n\n' + "После оплаты пришли в ответ на это сообщение скрин оплаты (не документ, а именно фото)"
+        text = "Оплатите билет:\n\nСтоимость: " + bold("1499 рублей") + "\n\n" + bold("СБЕРБАНК") + "\n5469 3300 1323 0903\nЕлизавета Александровна\n\n" + bold('ВАЖНО: ') + 'В комментарии к платежу укажи фамилию\n\n' + "После оплаты пришли в ответ на это сообщение скрин оплаты (не документ, а именно фото)"
 
         await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
         await PGroup.W2.set()
@@ -153,7 +153,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
 @dp.message_handler(state=PGroup.W3)
 async def answer_q1(message: types.Message, state: FSMContext):
     answer = message.text
-    f = 'users3.xlsx'
+    f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
     wb = load_workbook(f)
     ws = wb['Регистрация']
     ww = wb['Количество']  
@@ -174,8 +174,8 @@ async def answer_q1(message: types.Message, state: FSMContext):
     if k == 0 and check == 1:
         await state.update_data(answer11=answer)
         
-        text = bold("Отправьте ссылку на свой репост из VK:\n") # \nhttps://vk.com/wall-199983582_1590
-        await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN_V2)
+        text = bold("Отправьте ссылку на свой репост из VK\n") + '(ссылка на группу vk расположена в контактах)'
+        await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
         await PGroup.W4.set()      
         # text = "Оплатите билет:\n\nСтоимость: " + bold("1199 рублей") + "\n\n2202200112477334\nДмитрий Альбертович И.\n\n" + bold('ВАЖНО: ') + 'В комментарии к платежу укажите фамилию\n\n' + "После оплаты отправьте сюда скрин оплаты (не документ, а именно фото)"
         # await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
@@ -187,7 +187,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
     await state.update_data(answer22=answer)
     data = await state.get_data()               
     answer11 = data.get("answer11")
-    f = 'users3.xlsx'
+    f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
     wb = load_workbook(f)
     ws = wb['Регистрация']
     ww = wb['Количество']  
@@ -214,7 +214,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
         ws['H' + idf] = answer
         wb.save(f)
         wb.close()     
-        text = "Оплатите билет:\n\nСтоимость: " + bold("1299 рублей") + "\n\n5469330013230903\nЕлизавета Александровна\n\n" + bold('ВАЖНО: ') + 'В комментарии к платежу укажи фамилию\n\n' + "После оплаты пришли в ответ на это сообщение скрин оплаты (не документ, а именно фото)"
+        text = "Оплатите билет:\n\nСтоимость: " + bold("1299 рублей") + "\n\n" + bold("СБЕРБАНК") + "\n5469 3300 1323 0903\nЕлизавета Александровна\n\n" + bold('ВАЖНО: ') + 'В комментарии к платежу укажи фамилию\n\n' + "После оплаты пришли в ответ на это сообщение скрин оплаты (не документ, а именно фото)"
         await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
     wb.close() 
     await PGroup.W5.set() 
@@ -225,7 +225,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
     data = await state.get_data()               
     answer11 = data.get("answer11")
     answer22 = data.get("answer22")
-    f = 'users3.xlsx'
+    f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
     wb = load_workbook(f)
     ws = wb['Регистрация']
     z = 0
@@ -246,7 +246,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
 async def answer_q1(message: types.Message, state: FSMContext):
     data = await state.get_data()               
     answer11 = data.get("answer11")
-    f = 'users3.xlsx'
+    f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
     wb = load_workbook(f)
     ws = wb['Регистрация']
     z = 0
@@ -308,7 +308,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
     answer2 = data.get("answer2") 
     answer3 = data.get("answer3")
     answer4 = data.get("answer4") 
-    f = 'users3.xlsx'
+    f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
     wb = load_workbook(f)
     ws = wb['Регистрация']
     ww = wb['Количество']  
@@ -340,11 +340,11 @@ async def answer_q1(message: types.Message, state: FSMContext):
         wb.close()
         text = "Спасибо! Вы в списках!\n\nЧтобы попасть на " + bold("BEZNAZVANIYA") + ' | ' + bold('ACT A FOOL DAY') + ", необходимо оплатить билет.\n\nДля этого нажмите команду /payment или кнопку " + bold('"Оплата"') + " внизу👇"
         await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
-        J = open("check.txt","r", encoding="utf-8") 
+        J = open("/Users/senyashago/Desktop/Бот практика/bez/check.txt","r", encoding="utf-8") 
         joinedUsers = set()
         for line in J:
             joinedUsers.add(line.strip())
-        J = open("check.txt","a", encoding="utf-8")
+        J = open("/Users/senyashago/Desktop/Бот практика/bez/check.txt","a", encoding="utf-8")
         J.write(str(message.chat.id)+'\n')
         joinedUsers.add(message.chat.id)
     await state.finish()
@@ -354,7 +354,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
 @dp.message_handler(content_types=['text'], state=None)
 async def enter_meinfo(message: types.Message):
     if message.text == 'Регистрация' or message.text == 'регистрация':  
-        f = 'users3.xlsx'
+        f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
         wb = load_workbook(f)
         ws = wb['Регистрация']
         text = bold("Введите ФИО") + "\nПример: " + italic("Иванов Иван Иванович")
@@ -368,8 +368,8 @@ async def enter_meinfo(message: types.Message):
 
 
 
-    elif message.text == '1299 руб. с репостом афиши из группы в VK к себе на страницу':
-        J = open("check.txt","r", encoding="utf-8")
+    elif message.text == '1299 руб. с репостом афиши из группы VK к себе на страницу':
+        J = open("/Users/senyashago/Desktop/Бот практика/bez/check.txt","r", encoding="utf-8")
         joinedUsers = set()
         for line in J:
             joinedUsers.add(line.strip())
@@ -384,7 +384,7 @@ async def enter_meinfo(message: types.Message):
 
 
     elif message.text == '1499 руб. без репоста':
-        J = open("check.txt","r", encoding="utf-8")
+        J = open("/Users/senyashago/Desktop/Бот практика/bez/check.txt","r", encoding="utf-8")
         joinedUsers = set()
         for line in J:
             joinedUsers.add(line.strip())
@@ -417,7 +417,7 @@ async def enter_meinfo(message: types.Message):
         await bot.send_message(message.from_user.id, bold('Контакты'),reply_markup=keyboard, parse_mode=ParseMode.MARKDOWN)
     elif (message.text == "Таблица" or message.text == "таблица") and int(message.chat.id) == int(admin_chat_id):
         markup = types.ReplyKeyboardRemove()
-        await bot.send_document(admin_chat_id, document=open('users3.xlsx', 'rb'), reply_markup=markup)
+        await bot.send_document(admin_chat_id, document=open('/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx', 'rb'), reply_markup=markup)
     elif int(message.chat.id) == int(admin_chat_id):
         chatId = message.text.split(': ')[0]
         H = message.text.split(': ')[1]
@@ -436,7 +436,7 @@ async def enter_meinfo(message: types.Message):
             keyboard.add(url_button3)
             keyboard.add(url_button4)
             pop = message.text.split(': ')[1]
-            f = 'users3.xlsx'
+            f = '/Users/senyashago/Desktop/Бот практика/bez/users3.xlsx'
             wb = load_workbook(f)
             ws = wb['Регистрация']
             N = 0
