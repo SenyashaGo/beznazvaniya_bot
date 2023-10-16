@@ -1,7 +1,7 @@
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import PatternFill, Font, Alignment
 import asyncio
-from imaplib import Commands
+# from imaplib import Commands
 import logging
 import os
 import pandas as pd
@@ -44,14 +44,14 @@ start_button.add(info, stats)
 start_button.add(call)
 
 V_button = types.ReplyKeyboardMarkup(resize_keyboard=True)
-V1 = types.KeyboardButton("999р - первокурсникам Политеха с репостом")
-V2 = types.KeyboardButton("1199р - первокурсникам других ВУЗов")
-V3 = types.KeyboardButton("1299р - остальным")
+# V1 = types.KeyboardButton("999р - первокурсникам Политеха с репостом")
+V2 = types.KeyboardButton("1199р - обычный билет")
+# V3 = types.KeyboardButton("1299р - остальным")
 V4 = types.KeyboardButton("2000р – VIP-билет")
 cancle = types.KeyboardButton('Отмена')
-V_button.add(V1)
+# V_button.add(V1)
 V_button.add(V2)
-V_button.add(V3)
+# V_button.add(V3)
 V_button.add(V4)
 V_button.add(cancle)
 
@@ -64,7 +64,7 @@ cancle_button.add(cancle)
 
 @dp.message_handler(commands='start')
 async def start(message: types.Message):
-    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('POSVYAT 2023') + '\n' + '22 СЕНТЯБРЯ\n23:00 - 5:00\nLOVELY LOFT\n\n'+ bold('FREE BAR') + ' | ' + bold('VIP TICKETS') + ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nМеню:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
+    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('HALLOWEEN 2023') + '\n' + '27 октября\n23:00 - 5:00\nДК «Трехгорка»\n\n'+ bold('FREE BAR') + ' | ' + bold('VIP TICKETS') + ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nМеню:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
 
 
 @dp.message_handler(Text(equals="Отмена"), state="*")
@@ -72,7 +72,7 @@ async def menu_button(message: types.Message, state: FSMContext):
     await state.finish()
     await bot.send_message(
         message.chat.id, "Отмена произошла успешно.")
-    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('POSVYAT 2023') + '\n' + '22 СЕНТЯБРЯ\n23:00 - 5:00\nLOVELY LOFT\n\n'+ bold('FREE BAR') + ' | ' + bold('VIP TICKETS') + ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nМеню:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
+    await message.answer(f'Салют! \n\n' + bold('BEZNAZVANIYA') + ' | ' + bold('HALLOWEEN 2023') + '\n' + '27 октября\n23:00 - 5:00\nДК «Трехгорка»\n\n'+ bold('FREE BAR') + ' | ' + bold('VIP TICKETS') + ' | ' + bold('FC') + '/' + bold('DC') + bold('18') + '+' + '\n\nМеню:\n/enroll - пройти регистрацию\n/payment - оплатить билет\n/contacts - наши контакты', parse_mode=ParseMode.MARKDOWN, reply_markup=start_button)# \n/question - связаться с нами
     await state.finish()
 
 
@@ -428,7 +428,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
                     break
                     
                 elif str(ws['G' + str(i)].value) == '0':
-                    text = "Вы в списках!\n\nДля того, чтобы попасть на " + bold("POSVYAT 2023") + ", необходимо оплатить билет.\nЕсли вы оплатили и прикрепили скрин в\n/payment, то ожидайте ответа в этом чате.\n" + bold('Вам придет сообщение')
+                    text = "Вы в списках!\n\nДля того, чтобы попасть на " + bold('BEZNAZVANIYA') + ' | ' + bold('HALLOWEEN 2023') + ", необходимо оплатить билет.\nЕсли вы оплатили и прикрепили скрин в\n/payment, то ожидайте ответа в этом чате.\n" + bold('Вам придет сообщение')
                     await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
                     k = 1
                     break
@@ -444,7 +444,7 @@ async def answer_q1(message: types.Message, state: FSMContext):
         ww['A2'].value = int(n)-1
         wb.save(f)
         wb.close()
-        text = "Спасибо! Вы в списках!\n\nЧтобы попасть на " + bold("BEZNAZVANIYA") + ' | ' + bold('POSVYAT 2023') + ", необходимо оплатить билет.\n\nДля этого нажмите команду /payment или кнопку " + bold('"Оплата"') + " внизу👇"
+        text = "Спасибо! Вы в списках!\n\nЧтобы попасть на " + bold('BEZNAZVANIYA') + ' | ' + bold('HALLOWEEN 2023') + ", необходимо оплатить билет.\n\nДля этого нажмите команду /payment или кнопку " + bold('"Оплата"') + " внизу👇"
         await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
         J = open("/Users/senyashago/Desktop/PythonWork/beznazvaniya_2023/beznazvaniya_bot/check.txt","r", encoding="utf-8")
         joinedUsers = set()
@@ -474,22 +474,22 @@ async def enter_meinfo(message: types.Message):
 
 
 
-    elif message.text == '999р - первокурсникам Политеха с репостом':
-        J = open("/Users/senyashago/Desktop/PythonWork/beznazvaniya_2023/beznazvaniya_bot/check.txt","r", encoding="utf-8")
-        joinedUsers = set()
-        for line in J:
-            joinedUsers.add(line.strip())
-        if str(message.chat.id) in joinedUsers:
-            text = bold("Введите ФИО, указанное при регистрации") + "\nПример: " + italic("Иванов Иван Иванович")
-            await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)                                
-            await PGroup.W3.set()
-        else:
-            text = "Сначала зарегистрируйся. Для этого жми команду /enroll или кнопку " + bold('"Регистрация"') + " внизу👇"
-            await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
+    # elif message.text == '999р - первокурсникам Политеха с репостом':
+    #     J = open("/Users/senyashago/Desktop/PythonWork/beznazvaniya_2023/beznazvaniya_bot/check.txt","r", encoding="utf-8")
+    #     joinedUsers = set()
+    #     for line in J:
+    #         joinedUsers.add(line.strip())
+    #     if str(message.chat.id) in joinedUsers:
+    #         text = bold("Введите ФИО, указанное при регистрации") + "\nПример: " + italic("Иванов Иван Иванович")
+    #         await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
+    #         await PGroup.W3.set()
+    #     else:
+    #         text = "Сначала зарегистрируйся. Для этого жми команду /enroll или кнопку " + bold('"Регистрация"') + " внизу👇"
+    #         await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
 
 
 
-    elif message.text == '1199р - первокурсникам других ВУЗов':
+    elif message.text == '1199р - обычный билет':
         J = open("/Users/senyashago/Desktop/PythonWork/beznazvaniya_2023/beznazvaniya_bot/check.txt","r", encoding="utf-8")
         joinedUsers = set()
         for line in J:
@@ -502,18 +502,18 @@ async def enter_meinfo(message: types.Message):
             text = "Сначала зарегистрируйся. Для этого жми команду /enroll или кнопку " + bold('"Регистрация"') + " внизу👇"
             await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
 
-    elif message.text == '1299р - остальным':
-        J = open("/Users/senyashago/Desktop/PythonWork/beznazvaniya_2023/beznazvaniya_bot/check.txt","r", encoding="utf-8")
-        joinedUsers = set()
-        for line in J:
-            joinedUsers.add(line.strip())
-        if str(message.chat.id) in joinedUsers:
-            text = bold("Введите ФИО, указанное при регистрации") + "\nПример: " + italic("Иванов Иван Иванович")
-            await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
-            await PGroup.W6.set()
-        else:
-            text = "Сначала зарегистрируйся. Для этого жми команду /enroll или кнопку " + bold('"Регистрация"') + " внизу👇"
-            await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
+    # elif message.text == '1299р - остальным':
+    #     J = open("/Users/senyashago/Desktop/PythonWork/beznazvaniya_2023/beznazvaniya_bot/check.txt","r", encoding="utf-8")
+    #     joinedUsers = set()
+    #     for line in J:
+    #         joinedUsers.add(line.strip())
+    #     if str(message.chat.id) in joinedUsers:
+    #         text = bold("Введите ФИО, указанное при регистрации") + "\nПример: " + italic("Иванов Иван Иванович")
+    #         await message.answer(text, reply_markup=cancle_button, parse_mode=ParseMode.MARKDOWN)
+    #         await PGroup.W6.set()
+    #     else:
+    #         text = "Сначала зарегистрируйся. Для этого жми команду /enroll или кнопку " + bold('"Регистрация"') + " внизу👇"
+    #         await message.answer(text, reply_markup=start_button, parse_mode=ParseMode.MARKDOWN)
 
 
     elif message.text == '2000р – VIP-билет':
